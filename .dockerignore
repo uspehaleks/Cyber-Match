@@ -13,5 +13,4 @@ README.md
 icons/*.png
 screenshots/*.png
 .env.local
-.env.*.local
 # Force redeploy - $(date)  
