@@ -107,7 +107,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📊 Health: http://localhost:${PORT}/health`);
     console.log(`🔍 Diagnostics: http://localhost:${PORT}/api/diagnostics`);
