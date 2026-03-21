@@ -12,5 +12,7 @@ README.md
 .idea
 icons/*.png
 screenshots/*.png
+.env
 .env.local
+.env.*.local
 # Force redeploy - $(date)  
