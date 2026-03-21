@@ -1,4 +1,5 @@
 // Simple server without any dependencies on missing env vars
+require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
 const path = require('path');
@@ -12,9 +13,11 @@ app.use(express.static(path.join(__dirname, '.')));
 
 // PostgreSQL connection pool (optional)
 let pool = null;
-if (process.env.DATABASE_URL) {
+// Use LOCAL_DATABASE_URL for local dev (overrides Railway's internal URL)
+const dbUrl = process.env.LOCAL_DATABASE_URL || process.env.DATABASE_URL;
+if (dbUrl) {
     pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: dbUrl,
         max: 5,
         idleTimeoutMillis: 30000,
         connectionTimeoutMillis: 5000
