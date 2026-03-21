@@ -11,6 +11,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '.')));
 
+// Handle favicon.ico - return empty 204 response
+app.get('/favicon.ico', (req, res) => {
+    res.status(204).send();
+});
+
 // PostgreSQL connection pool (optional)
 let pool = null;
 // Use LOCAL_DATABASE_URL for local dev (overrides Railway's internal URL)
