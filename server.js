@@ -13,20 +13,27 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '.')));
 
-// PostgreSQL connection pool
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL
-});
+// PostgreSQL connection pool (optional - only if DATABASE_URL is set)
+let pool = null;
+const dbUrl = process.env.LOCAL_DATABASE_URL || process.env.DATABASE_URL;
+if (dbUrl) {
+    pool = new Pool({
+        connectionString: dbUrl,
+        max: 5,
+        idleTimeoutMillis: 30000,
+        connectionTimeoutMillis: 5000
+    });
 
-// Тест підключення до БД
-pool.connect((err, client, release) => {
-    if (err) {
-        console.error('Database connection error:', err.stack);
-    } else {
-        console.log('✅ Database connected successfully');
-        release();
-    }
-});
+    // Тест підключення до БД
+    pool.connect((err, client, release) => {
+        if (err) {
+            console.error('Database connection error:', err.stack);
+        } else {
+            console.log('✅ Database connected successfully');
+            release();
+        }
+    });
+}
 
 // ==================== API Routes ====================
 
