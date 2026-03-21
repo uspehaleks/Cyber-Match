@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber-Match Logo Export</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .logo-large {
+            width: 256px;
+            height: 256px;
+            background: #16213e;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .logo-large svg {
+            width: 200px;
+            height: 200px;
+        }
+        .sizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        .size-card {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .size-card svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 10px;
+        }
+        .size-card span {
+            display: block;
+            font-size: 14px;
+            color: #a0a0a0;
+        }
+        .buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        button {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(79, 70, 229, 0.4);
+        }
+        .info {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        .info h3 {
+            color: #4f46e5;
+            margin-top: 0;
+        }
+        .info code {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Cyber-Match Logo</h1>
+    
+    <div class="logo-preview">
+        <div class="logo-large" id="logoContainer">
+            <!-- Logo will be inserted here -->
+        </div>
+        
+        <div class="sizes-grid">
+            <div class="size-card">
+                <div id="size72"></div>
+                <span>72x72</span>
+            </div>
+            <div class="size-card">
+                <div id="size96"></div>
+                <span>96x96</span>
+            </div>
+            <div class="size-card">
+                <div id="size128"></div>
+                <span>128x128</span>
+            </div>
+            <div class="size-card">
+                <div id="size144"></div>
+                <span>144x144</span>
+            </div>
+            <div class="size-card">
+                <div id="size192"></div>
+                <span>192x192</span>
+            </div>
+            <div class="size-card">
+                <div id="size512"></div>
+                <span>512x512</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button onclick="downloadSVG()">📥 Завантажити SVG</button>
+        <button onclick="downloadAllPNG()">📦 Завантажити всі PNG</button>
+        <button onclick="downloadFavicon()">🔖 Завантажити Favicon</button>
+    </div>
+    
+    <div class="info">
+        <h3>Як використати:</h3>
+        <ol>
+            <li>Натисни "Завантажити всі PNG" для експорту всіх розмірів</li>
+            <li>Збережи файли в папку <code>icons/</code></li>
+            <li>Або використай <code>logo.svg</code> для вебу</li>
+        </ol>
+        <p><strong>Файли:</strong> icon-72.png, icon-96.png, icon-128.png, icon-144.png, icon-192.png, icon-512.png</p>
+    </div>
+    
+    <script>
+        // SVG Logo
+        const logoSVG = `<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="256" cy="256" r="240" fill="url(#bgGradient)"/>
+  <g transform="translate(256, 256) rotate(-45) translate(-256, -256)">
+    <circle cx="280" cy="200" r="55" fill="#ffffff"/>
+    <circle cx="280" cy="200" r="30" fill="#4f46e5"/>
+    <rect x="235" y="200" width="42" height="140" rx="10" fill="#ffffff"/>
+    <circle cx="280" cy="185" r="20" fill="#4f46e5"/>
+  </g>
+  <path d="M160 120 L165 145 L190 145 L170 160 L177 185 L160 170 L143 185 L150 160 L130 145 L155 145 Z" fill="#f59e0b"/>
+</svg>`;
+
+        // Insert logo into containers
+        document.getElementById('logoContainer').innerHTML = logoSVG;
+        
+        const sizes = [72, 96, 128, 144, 192, 512];
+        sizes.forEach(size => {
+            const container = document.getElementById('size' + size);
+            if (container) {
+                container.innerHTML = logoSVG.replace('viewBox', `width="${size}" height="${size}" viewBox`);
+            }
+        });
+
+        // Download SVG
+        function downloadSVG() {
+            const blob = new Blob([logoSVG], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'logo.svg';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Convert SVG to PNG and download
+        async function downloadPNG(size) {
+            return new Promise((resolve) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                const img = new Image();
+                img.onload = () => {
+                    ctx.drawImage(img, 0, 0, size, size);
+                    const a = document.createElement('a');
+                    a.download = `icon-${size}.png`;
+                    a.href = canvas.toDataURL('image/png');
+                    a.click();
+                    resolve();
+                };
+                img.src = 'data:image/svg+xml;base64,' + btoa(logoSVG);
+            });
+        }
+
+        // Download all PNG sizes
+        async function downloadAllPNG() {
+            for (const size of [72, 96, 128, 144, 152, 192, 384, 512]) {
+                await downloadPNG(size);
+                await new Promise(r => setTimeout(r, 300));
+            }
+        }
+
+        // Download favicon (16x16, 32x32)
+        function downloadFavicon() {
+            downloadPNG(32);
+            setTimeout(() => downloadPNG(16), 500);
+        }
+    </script>
+</body>
+</html>

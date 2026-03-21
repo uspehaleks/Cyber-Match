@@ -1,0 +1,37 @@
+{
+  "name": "cyber-match-pwa",
+  "version": "1.0.4",
+  "description": "PWA додаток для перевірки авто, VIN та AI-консультацій",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server-simple.js",
+    "dev": "nodemon server-simple.js",
+    "bot": "node bot.js",
+    "build": "echo 'Build complete - no build-time steps required'",
+    "db:init": "node migrate.js",
+    "start:full": "node server.js",
+    "deploy": "node migrate.js && node server.js"
+  },
+  "keywords": [
+    "pwa",
+    "automotive",
+    "vin-check",
+    "ai",
+    "telegram"
+  ],
+  "author": "uspehaleks",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "telegraf": "^4.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

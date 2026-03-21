@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Немає з'єднання</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .offline-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+        }
+        
+        .offline-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            animation: pulse 2s ease infinite;
+        }
+        
+        .offline-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        
+        .offline-message {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .offline-features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .offline-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .offline-feature-icon {
+            font-size: 20px;
+        }
+        
+        .offline-feature span {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1 class="offline-title">Немає з'єднання</h1>
+        <p class="offline-message">
+            Схоже, ви втратили з'єднання з інтернетом. 
+            Деякі функції можуть бути недоступні.
+        </p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 Спробувати знову
+        </button>
+        
+        <div class="offline-features">
+            <div class="offline-feature">
+                <span class="offline-feature-icon">✅</span>
+                <span>Перевірені результати доступні офлайн</span>
+            </div>
+            <div class="offline-feature">
+                <span class="offline-feature-icon">✅</span>
+                <span>Збережені дані в особистому кабінеті</span>
+            </div>
+            <div class="offline-feature">
+                <span class="offline-feature-icon">⏳</span>
+                <span>Нові запити синхронізуються при підключенні</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-retry when connection is restored
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // Check connection status periodically
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

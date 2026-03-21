@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Generator</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .canvas-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+        canvas {
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        button {
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .sizes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .size-btn {
+            background: #16213e;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        .size-btn.active {
+            background: #4f46e5;
+        }
+        .info {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            line-height: 1.6;
+        }
+        .info h3 {
+            margin-top: 0;
+            color: #4f46e5;
+        }
+        .info ol {
+            padding-left: 20px;
+        }
+        .info li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Cyber-Match Icon Generator</h1>
+    
+    <div class="canvas-container">
+        <canvas id="iconCanvas" width="512" height="512"></canvas>
+        
+        <div class="sizes">
+            <button class="size-btn" data-size="72">72x72</button>
+            <button class="size-btn" data-size="96">96x96</button>
+            <button class="size-btn" data-size="128">128x128</button>
+            <button class="size-btn" data-size="144">144x144</button>
+            <button class="size-btn active" data-size="192">192x192</button>
+            <button class="size-btn" data-size="384">384x384</button>
+            <button class="size-btn" data-size="512">512x512</button>
+        </div>
+        
+        <div>
+            <button id="downloadBtn">📥 Завантажити PNG</button>
+            <button id="downloadAllBtn">📦 Завантажити всі</button>
+        </div>
+    </div>
+    
+    <div class="info">
+        <h3>Як використати:</h3>
+        <ol>
+            <li>Оберіть розмір іконки</li>
+            <li>Натисніть "Завантажити PNG" для поточного розміру</li>
+            <li>Або "Завантажити всі" для всіх розмірів</li>
+            <li>Збережіть файли в папку <code>icons/</code></li>
+        </ol>
+        <p><strong>Або</strong> використайте онлайн генератор: <a href="https://realfavicongenerator.net" target="_blank" style="color: #06b6d4;">RealFaviconGenerator</a></p>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('iconCanvas');
+        const ctx = canvas.getContext('2d');
+        let currentSize = 192;
+        
+        // Draw the icon
+        function drawIcon(size = 512) {
+            canvas.width = size;
+            canvas.height = size;
+            
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const radius = size * 0.4;
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4f46e5');
+            gradient.addColorStop(1, '#06b6d4');
+            
+            // Background circle
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Wrench icon (white)
+            ctx.fillStyle = 'white';
+            const wrenchSize = size * 0.5;
+            const wrenchCenterX = centerX;
+            const wrenchCenterY = centerY;
+            
+            // Wrench head (circle)
+            const headRadius = wrenchSize * 0.25;
+            ctx.beginPath();
+            ctx.arc(wrenchCenterX + wrenchSize * 0.1, wrenchCenterY - wrenchSize * 0.15, headRadius, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Wrench handle
+            ctx.save();
+            ctx.translate(wrenchCenterX, wrenchCenterY);
+            ctx.rotate(-Math.PI / 4);
+            ctx.fillRect(-wrenchSize * 0.08, -wrenchSize * 0.1, wrenchSize * 0.16, wrenchSize * 0.5);
+            ctx.restore();
+            
+            // Inner circle (U-shape for wrench opening)
+            ctx.fillStyle = '#4f46e5';
+            ctx.beginPath();
+            ctx.arc(wrenchCenterX + wrenchSize * 0.1, wrenchCenterY - wrenchSize * 0.15, headRadius * 0.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add shine effect
+            const shineGradient = ctx.createRadialGradient(
+                centerX - radius * 0.3, 
+                centerY - radius * 0.3, 
+                0,
+                centerX, 
+                centerY, 
+                radius
+            );
+            shineGradient.addColorStop(0, 'rgba(255, 255, 255, 0.2)');
+            shineGradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fillStyle = shineGradient;
+            ctx.fill();
+        }
+        
+        // Initialize
+        drawIcon(512);
+        
+        // Size buttons
+        document.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentSize = parseInt(btn.dataset.size);
+                drawIcon(currentSize);
+            });
+        });
+        
+        // Download current
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            drawIcon(currentSize);
+            const link = document.createElement('a');
+            link.download = `icon-${currentSize}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+        
+        // Download all sizes
+        document.getElementById('downloadAllBtn').addEventListener('click', async () => {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            
+            for (const size of sizes) {
+                drawIcon(size);
+                const link = document.createElement('a');
+                link.download = `icon-${size}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+        });
+    </script>
+</body>
+</html>

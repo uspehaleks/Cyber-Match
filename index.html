@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="description" content="Cyber-Match - перевірка авто, оцінка, VIN, страхування">
+    <title>Cyber-Match</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🔧</span>
+                <h1>Cyber-Match</h1>
+            </div>
+            <button class="profile-btn" id="profileBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h2>Ваш персональний автопомічник</h2>
+                <p>Швидка перевірка, оцінка та консультації 24/7</p>
+                <p class="app-url">🌐 cyber-match-production.up.railway.app</p>
+            </section>
+
+            <!-- Main Actions -->
+            <section class="actions">
+                <button class="action-card" id="rateCarBtn">
+                    <div class="action-icon">⭐</div>
+                    <h3>Оцінити авто</h3>
+                    <p>Дізнайтесь ринкову вартість вашого автомобіля</p>
+                </button>
+
+                <button class="action-card" id="checkVinBtn">
+                    <div class="action-icon">🔍</div>
+                    <h3>Перевірити VIN</h3>
+                    <p>Повна історія автомобіля по VIN-коду</p>
+                </button>
+
+                <button class="action-card" id="askAiBtn">
+                    <div class="action-icon">🤖</div>
+                    <h3>Запитати Cyber-Match</h3>
+                    <p>Отримайте консультацію з будь-якого питання</p>
+                </button>
+            </section>
+
+            <!-- Monetization Section -->
+            <section class="monetization">
+                <h3>Корисні послуги</h3>
+                
+                <a href="#" class="service-card mfo" id="mfoLink">
+                    <div class="service-icon">💰</div>
+                    <div class="service-info">
+                        <h4>Потрібен ремонт?</h4>
+                        <p>Швидке фінансування на ремонт авто</p>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+
+                <a href="#" class="service-card presale" id="presaleLink">
+                    <div class="service-icon">📈</div>
+                    <div class="service-info">
+                        <h4>Хочете продати дорожче?</h4>
+                        <p>Передпродажна підготовка</p>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+
+                <a href="https://hotline.finance" class="service-card insurance" id="insuranceLink">
+                    <div class="service-icon">🛡️</div>
+                    <div class="service-info">
+                        <h4>Потрібна страховка?</h4>
+                        <p>Порівняйте та оберіть найкращу</p>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-page="home">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                    <polyline points="9,22 9,12 15,12 15,22"/>
+                </svg>
+                <span>Головна</span>
+            </button>
+            <button class="nav-item" data-page="profile">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M12 14c-6 0-8 3-8 6v1h16v-1c0-3-2-6-8-6z"/>
+                </svg>
+                <span>Профіль</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <h2>Особистий кабінет</h2>
+            </div>
+            <div class="profile-body">
+                <p class="profile-description">
+                    Щоб зберегти результати перевірки та отримати доступ до історії, 
+                    підпишіться на наш Telegram-бот
+                </p>
+                <a href="https://t.me/CyberMatch_AI_bot" class="telegram-btn" id="telegramBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Підписатися в Telegram
+                </a>
+                <div class="profile-features">
+                    <div class="feature">
+                        <span class="feature-icon">📋</span>
+                        <span>Історія перевірок</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">💾</span>
+                        <span>Збережені результати</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">🔔</span>
+                        <span>Сповіщення</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="installPrompt">
+        <div class="prompt-content">
+            <p>📲 Встановіть додаток для швидшого доступу</p>
+            <button class="install-btn" id="installBtn">Встановити</button>
+            <button class="prompt-dismiss" id="promptDismiss">✕</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

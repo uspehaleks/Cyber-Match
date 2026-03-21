@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+*.md
+!README.md
+.env*
+RAILWAY_ENV.md
+DEPLOY.md
+README.md
+*.local
+.vscode
+.idea
+icons/*.png
+screenshots/*.png
+# Force redeploy - $(date)  

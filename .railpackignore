@@ -1,0 +1,27 @@
+# Railway Railpack - ignore these files
+.env
+.env.*
+*.env
+.env.example
+.env.local
+.env.*.local
+
+# Documentation with env examples
+*.md
+
+# Build
+node_modules
+npm-debug.log
+
+# Editor
+.vscode
+.idea
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Icons/Screenshots (generated)
+icons/*.png
+screenshots/*.png
