@@ -4,7 +4,6 @@ npm-debug.log
 .gitignore
 *.md
 !README.md
-.env*
 RAILWAY_ENV.md
 DEPLOY.md
 README.md
@@ -13,4 +12,6 @@ README.md
 .idea
 icons/*.png
 screenshots/*.png
+.env.local
+.env.*.local
 # Force redeploy - $(date)  
