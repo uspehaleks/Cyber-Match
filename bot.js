@@ -1,5 +1,6 @@
 // Telegram Bot для Cyber-Match AI
 
+require('dotenv').config();
 const { Telegraf } = require('telegraf');
 const { Pool } = require('pg');
 
@@ -224,6 +225,22 @@ bot.on('message', async (ctx) => {
 // Graceful shutdown
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
+// Simple HTTP server for health check
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.url === '/health') {
+        res.writeHead(200);
+        res.end(JSON.stringify({ status: 'ok', service: 'telegram-bot' }));
+    } else {
+        res.writeHead(404);
+        res.end();
+    }
+});
+const HEALTH_PORT = process.env.PORT || 3001;
+server.listen(HEALTH_PORT, () => {
+    console.log(`🏥 Health check: http://localhost:${HEALTH_PORT}/health`);
+});
 
 // Запуск бота
 bot.launch().then(() => {
