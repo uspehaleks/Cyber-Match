@@ -66,6 +66,12 @@ body {
     gap: 10px;
 }
 
+.logo-image {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
 .logo-icon {
     font-size: 28px;
 }
