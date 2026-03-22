@@ -1,4 +1,4 @@
-// Telegram Bot для Cyber-Match
+// Telegram Bot для Cyber-Match AI
 
 const { Telegraf } = require('telegraf');
 const { Pool } = require('pg');
@@ -42,7 +42,7 @@ bot.start(async (ctx) => {
     
     await ctx.reply(
         `👋 Привіт, ${user.first_name}!\n\n` +
-        `Я **Cyber-Match Bot** - твій особистий автопомічник.\n\n` +
+        `Я **Cyber-Match AI Bot** - твій особистий автопомічник.\n\n` +
         `🔧 **Що я вмію:**\n` +
         `• Зберігати результати перевірки VIN\n` +
         `• Зберігати оцінки вартості авто\n` +
@@ -57,7 +57,7 @@ bot.start(async (ctx) => {
 // Команда /help
 bot.help(async (ctx) => {
     await ctx.reply(
-        '📖 **Довідка Cyber-Match**\n\n' +
+        '📖 **Довідка Cyber-Match AI**\n\n' +
         '🔹 **Команди:**\n' +
         '/start - Запустити бота\n' +
         '/help - Показати цю довідку\n' +

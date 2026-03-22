@@ -1,4 +1,4 @@
-// Server API для Cyber-Match (Node.js + Express + PostgreSQL)
+// Server API для Cyber-Match AI (Node.js + Express + PostgreSQL)
 
 const express = require('express');
 const { Pool } = require('pg');

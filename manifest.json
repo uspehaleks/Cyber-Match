@@ -1,6 +1,6 @@
 {
-  "name": "Cyber-Match - Автопомічник",
-  "short_name": "Cyber-Match",
+  "name": "Cyber-Match AI - Автопомічник",
+  "short_name": "Cyber-Match AI",
   "description": "Оцінка авто, перевірка VIN, консультації",
   "start_url": "/index.html",
   "display": "standalone",
@@ -88,9 +88,9 @@
       ]
     },
     {
-      "name": "Cyber-Match",
+      "name": "Cyber-Match AI",
       "short_name": "AI",
-      "description": "Запитати Cyber-Match",
+      "description": "Запитати Cyber-Match AI",
       "url": "/index.html?action=ai",
       "icons": [
         {

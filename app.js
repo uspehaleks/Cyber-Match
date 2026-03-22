@@ -89,7 +89,7 @@ function initActionButtons() {
     
     askAiBtn.addEventListener('click', () => {
         // Open AI chat interface
-        showToast('🤖 Cyber-Match готовий до діалогу');
+        showToast('🤖 Cyber-Match AI готовий до діалогу');
     });
 }
 
