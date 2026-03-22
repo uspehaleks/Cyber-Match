@@ -1,0 +1,19 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Wrench (Гаєчний ключ) -->
+  <g transform="translate(256, 256) rotate(-45) translate(-256, -256)">
+    <!-- Wrench Head -->
+    <circle cx="280" cy="200" r="55" fill="#ffffff"/>
+    <circle cx="280" cy="200" r="30" fill="#4f46e5"/>
+    
+    <!-- Wrench Handle -->
+    <rect x="235" y="200" width="42" height="140" rx="10" fill="#ffffff"/>
+    
+    <!-- U-shape opening -->
+    <circle cx="280" cy="185" r="20" fill="#4f46e5"/>
+  </g>
+  
+  <!-- Spark/Star (символ AI/технологій) -->
+  <g transform="translate(140, 140)">
+    <path d="M20 0 L23 14 L37 14 L26 23 L30 37 L20 28 L10 37 L14 23 L3 14 L17 14 Z" fill="#f59e0b" opacity="0.9"/>
+  </g>
+</svg>
